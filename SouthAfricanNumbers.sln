@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{4CE874AE-61A8-4803-8E5A-866D07F086B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthAfricanNumbers.Server", "Server\SouthAfricanNumbers.Server.csproj", "{62F9EC33-AC62-4A2C-83C1-60CA562F1373}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{87C3EBA8-B3D3-4AA3-BE2E-9CFC7DCDD356}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthAfricanNumbers.Client", "Client\SouthAfricanNumbers.Client.csproj", "{B8AE471E-48ED-43E7-958E-B6C4E34DFD2F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{50D1B9B9-3E25-49B8-9B3A-D47763DE6A33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthAfricanNumbers.Shared", "Shared\SouthAfricanNumbers.Shared.csproj", "{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouthAfricanNumbers.DomainModel", "SouthAfricanNumbers.DomainModel\SouthAfricanNumbers.DomainModel.csproj", "{96E896E0-C1AE-4F95-8AD3-69496F17AE99}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{617EB9BA-7699-4995-8F95-987B742D8370}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{556C9E82-532B-41B8-B464-82C7C854D693}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{31FF4FCD-8088-441C-9881-EAEA403A97E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +21,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{96E896E0-C1AE-4F95-8AD3-69496F17AE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96E896E0-C1AE-4F95-8AD3-69496F17AE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96E896E0-C1AE-4F95-8AD3-69496F17AE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96E896E0-C1AE-4F95-8AD3-69496F17AE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F9EC33-AC62-4A2C-83C1-60CA562F1373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F9EC33-AC62-4A2C-83C1-60CA562F1373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F9EC33-AC62-4A2C-83C1-60CA562F1373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F9EC33-AC62-4A2C-83C1-60CA562F1373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AE471E-48ED-43E7-958E-B6C4E34DFD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AE471E-48ED-43E7-958E-B6C4E34DFD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AE471E-48ED-43E7-958E-B6C4E34DFD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AE471E-48ED-43E7-958E-B6C4E34DFD2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{96E896E0-C1AE-4F95-8AD3-69496F17AE99} = {87C3EBA8-B3D3-4AA3-BE2E-9CFC7DCDD356}
+		{62F9EC33-AC62-4A2C-83C1-60CA562F1373} = {556C9E82-532B-41B8-B464-82C7C854D693}
+		{B8AE471E-48ED-43E7-958E-B6C4E34DFD2F} = {31FF4FCD-8088-441C-9881-EAEA403A97E3}
+		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8} = {617EB9BA-7699-4995-8F95-987B742D8370}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {CE36ECDA-4B09-464F-92DB-D076E7D6FEFB}
+		SolutionGuid = {D3CD7901-CC2B-4C18-87D7-7FF7940E9515}
 	EndGlobalSection
 EndGlobal
