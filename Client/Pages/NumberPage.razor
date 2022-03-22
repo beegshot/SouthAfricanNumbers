@@ -1,0 +1,51 @@
+﻿@using SouthAfricanNumbers.Client.Services
+@using SouthAfricanNumbers.Shared
+@using SouthAfricanNumbers.Client.UIElements.Input
+
+@page "/number/{Id:guid}"
+
+@inject INumberService NumberService
+
+
+<h3>Number</h3>
+
+<EditForm Model="@currentNumber" OnValidSubmit="HandleValidSubmit">
+    <CustomInputGuid @bind-Value="currentNumber.Id" ValidationFor="@(() => currentNumber.Id)" Label="Id" Id="za_id" ReadOnly=true />
+    <CustomInputText @bind-Value="currentNumber.PhoneNumber" ValidationFor="@(() => currentNumber.PhoneNumber)" Label="Phone number" Id="za_number" />
+    <div class="form-group my-4">
+        <label for="za_timestamp">TimeStamp</label>
+        <input class="form-control" id="za_timestamp" @bind="@currentNumber.PhoneNumber" disabled />
+    </div>
+
+    <button type="submit" class="btn btn-primary ">Save</button>
+    <DataAnnotationsValidator/>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+
+    Number currentNumber = new Number();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == Guid.Empty)
+        {
+            currentNumber = new Number()
+            {
+                Id = Guid.NewGuid()
+            };
+        }
+        else
+        {
+            currentNumber = await NumberService.GetNumberById(Id);
+        }
+
+        base.OnInitialized();
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        var result = await NumberService.EditNumber(currentNumber);
+    }
+}

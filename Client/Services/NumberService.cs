@@ -12,10 +12,24 @@ namespace SouthAfricanNumbers.Client.Services
             _http = http;
         }
 
-        public async Task<Number> GetNumberById(int Id)
+        public async Task<Number> EditNumber(Number request)
         {
-            Number CurrentNumber = await _http.GetFromJsonAsync<Number>($"api/NumberList/{Id}");
-            return CurrentNumber;
+            var result = await _http.PostAsJsonAsync("api/NumberList", request);
+            return await result.Content.ReadFromJsonAsync<Number>();
+        }
+
+        public async Task<Number> GetNumberById(Guid Id)
+        {
+            var result = await _http.GetAsync($"api/NumberList/{Id}");
+            if(result.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                var message = await result.Content.ReadAsStringAsync();
+                return new Number { Id = Guid.Empty, PhoneNumber = message };
+            }
+            else
+            {
+                return await result.Content.ReadFromJsonAsync<Number>();
+            }
         }
 
         public async Task<List<Number>> GetNumbers()

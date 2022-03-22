@@ -6,6 +6,8 @@ namespace SouthAfricanNumbers.Client.Services
     {
         Task<List<Number>> GetNumbers();
 
-        Task<Number> GetNumberById(int Id);
+        Task<Number> GetNumberById(Guid Id);
+
+        Task<Number> EditNumber(Number request);
     }
 }

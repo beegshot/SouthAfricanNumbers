@@ -1,3 +1,54 @@
-﻿@page "/"
+﻿@using SouthAfricanNumbers.Shared
+@using SouthAfricanNumbers.Client.Services
 
-<Numbers />
+@page "/"
+
+@inject INumberService NumberService
+
+
+<h1>Registered ZA Number List</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Progressive number</th>
+            <th>Phone number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            _progCount = 1;
+        }
+        @foreach (Number item in CurrentNumbers)
+        {
+            <tr>
+                <td>
+                    <a href="/number/@item.Id.ToString()">@_progCount</a>
+                </td>
+                <td>@item.PhoneNumber</td>
+            </tr>
+            _progCount = _progCount + 1;
+        }
+        <tr>
+            <td></td>
+            <td>
+                <a href="/number/@Guid.Empty.ToString()"><i>New phone number</i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+@code {
+    private List<Number> CurrentNumbers = new List<Number>();
+
+    private int _progCount = 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentNumbers = await NumberService.GetNumbers();
+    }
+}

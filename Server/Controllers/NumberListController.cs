@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SouthAfricanNumbers.Server.Data;
 using SouthAfricanNumbers.Shared;
 
 namespace SouthAfricanNumbers.Server.Controllers
@@ -8,32 +8,68 @@ namespace SouthAfricanNumbers.Server.Controllers
     [ApiController]
     public class NumberListController : ControllerBase
     {
-        public List<Number> WNumbers { get; set; } = new List<Number>()
+        private readonly DataContext _context;
+
+        public NumberListController(DataContext context)
         {
-            new Number {Id = 1, PhoneNumber = "0123456789"},
-            new Number {Id = 2, PhoneNumber = "9876543210"},
-            new Number {Id = 3, PhoneNumber = "5678901234"},
-            new Number {Id = 4, PhoneNumber = "4321098765"}
-        };
+            _context = context;
+        }
 
         [HttpGet]
         public ActionResult<List<Number>> GetAllNumber()
         {
-            return Ok(WNumbers);
+            return Ok(_context.Numbers);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Number> GetNumberWithId(int id)
+        public ActionResult<Number> GetNumberWithId(string Id)
         {
-            Number CurrentNumber = WNumbers.FirstOrDefault(p => p.Id.Equals(id));
-            if(CurrentNumber == null)
+            Guid _id = new Guid(Id);
+
+            Number CurrentNumber = null;
+
+            foreach (var num in _context.Numbers)
             {
-                return NotFound("Number Id is missing");
+                if (num.Id == _id)
+                {
+                    CurrentNumber = num;
+                }
+            }
+
+            if (CurrentNumber == null)
+            {
+                return NotFound("This phone number does not exist");
             }
             else
             {
                 return Ok(CurrentNumber);
             }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Number>> EditNumber(Number request)
+        {
+            Number CurrentNumber = null;
+
+            foreach (var st in _context.Numbers)
+            {
+                if (st.Id == request.Id)
+                {
+                    CurrentNumber = st;
+                }
+            }
+
+            if (CurrentNumber == null)
+            {
+                _context.Add(request);
+            }
+            else
+            {
+                _context.Entry(CurrentNumber).CurrentValues.SetValues(request);
+            }
+
+            await _context.SaveChangesAsync();
+            return request;
         }
     }
 }
