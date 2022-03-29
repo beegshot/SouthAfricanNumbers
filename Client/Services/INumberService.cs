@@ -8,6 +8,8 @@ namespace SouthAfricanNumbers.Client.Services
 
         Task<Number> GetNumberById(Guid Id);
 
-        Task<Number> EditNumber(Number request);
+        Task<NumberResponse> EditNumber(Number request);
+
+        Task<List<UpFileResponse>> UploadFile(UpFile request);
     }
 }

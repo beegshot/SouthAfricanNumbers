@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{556C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{31FF4FCD-8088-441C-9881-EAEA403A97E3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthAfricanNumbers.UnitTests", "UnitTests\SouthAfricanNumbers.UnitTests.csproj", "{0C0049FF-B027-4B0E-BACF-D2482324EFCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{13A1E040-A55D-4D2C-AEA3-B77DCDCB5476}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C0049FF-B027-4B0E-BACF-D2482324EFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0049FF-B027-4B0E-BACF-D2482324EFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0049FF-B027-4B0E-BACF-D2482324EFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0049FF-B027-4B0E-BACF-D2482324EFCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{62F9EC33-AC62-4A2C-83C1-60CA562F1373} = {556C9E82-532B-41B8-B464-82C7C854D693}
 		{B8AE471E-48ED-43E7-958E-B6C4E34DFD2F} = {31FF4FCD-8088-441C-9881-EAEA403A97E3}
 		{B31C07EF-164A-4A19-8E90-89BDDE12DCC8} = {617EB9BA-7699-4995-8F95-987B742D8370}
+		{0C0049FF-B027-4B0E-BACF-D2482324EFCF} = {13A1E040-A55D-4D2C-AEA3-B77DCDCB5476}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3CD7901-CC2B-4C18-87D7-7FF7940E9515}

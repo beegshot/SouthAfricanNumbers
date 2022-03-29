@@ -1,7 +1,79 @@
-﻿@page "/csv"
+﻿@using System.Net
+@using SouthAfricanNumbers.Client.Services
+@using SouthAfricanNumbers.Shared
+@using SouthAfricanNumbers.Client.UIElements.Input
 
-<h3>Upload CSV file</h3>
+@page "/csv"
+
+@inject INumberService NumberService
+
+
+<h3>Upload CSV File</h3>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-control-file my-4">
+                <label for="za_csv">CSV File</label>
+                <InputFile OnChange="HandleInputFile" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block my-1" @onclick="SubmitFileAsync">Upload</button>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in importedList)
+        {
+            <tr>
+                <td>@item.number</td>
+                <td>@item.message</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
 
 @code {
+    private string fileData = null;
+    private List<UpFileResponse> importedList = new List<UpFileResponse>();
 
+    public async Task SubmitFileAsync()
+    {
+        if(!String.IsNullOrWhiteSpace(fileData))
+        {
+            UpFile currentFile = new UpFile();
+            currentFile.FileContent = fileData;
+
+            var result = await NumberService.UploadFile(currentFile);
+            importedList = result;
+        }
+    }
+
+    private async Task HandleInputFile(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        if (file == null)
+            return;
+
+        var buffer = new byte[file.Size];
+        await file.OpenReadStream().ReadAsync(buffer);
+
+        fileData = Convert.ToBase64String(buffer);
+    }
 }

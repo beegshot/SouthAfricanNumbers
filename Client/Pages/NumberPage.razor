@@ -14,17 +14,28 @@
     <CustomInputText @bind-Value="currentNumber.PhoneNumber" ValidationFor="@(() => currentNumber.PhoneNumber)" Label="Phone number" Id="za_number" />
     <div class="form-group my-4">
         <label for="za_timestamp">TimeStamp</label>
-        <input class="form-control" id="za_timestamp" @bind="@currentNumber.PhoneNumber" disabled />
+        <input class="form-control" id="za_timestamp" @bind="@currentNumber.TimeStamp" disabled />
     </div>
 
-    <button type="submit" class="btn btn-primary ">Save</button>
+    <button type="submit" class="btn btn-primary ">Update</button>
     <DataAnnotationsValidator/>
 </EditForm>
+
+@if(result != null)
+{
+    <span>Update server response: @result.message</span>
+}
+else
+{
+    <span>Update server response: -</span>
+}
+
 
 @code {
     [Parameter]
     public Guid Id { get; set; }
 
+    NumberResponse result = new NumberResponse();
     Number currentNumber = new Number();
 
     protected override async Task OnInitializedAsync()
@@ -46,6 +57,8 @@
 
     private async Task HandleValidSubmit()
     {
-        var result = await NumberService.EditNumber(currentNumber);
+        result = null;
+        result = await NumberService.EditNumber(currentNumber);
+        currentNumber = result.serverNumber;
     }
 }

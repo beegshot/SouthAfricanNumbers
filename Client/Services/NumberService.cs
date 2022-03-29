@@ -12,10 +12,16 @@ namespace SouthAfricanNumbers.Client.Services
             _http = http;
         }
 
-        public async Task<Number> EditNumber(Number request)
+        public async Task<List<UpFileResponse>> UploadFile(UpFile request)
+        {
+            var result = await _http.PostAsJsonAsync("api/NumberList/Upload", request);
+            return await result.Content.ReadFromJsonAsync<List<UpFileResponse>>();
+        }
+
+        public async Task<NumberResponse> EditNumber(Number request)
         {
             var result = await _http.PostAsJsonAsync("api/NumberList", request);
-            return await result.Content.ReadFromJsonAsync<Number>();
+            return await result.Content.ReadFromJsonAsync<NumberResponse>();
         }
 
         public async Task<Number> GetNumberById(Guid Id)
